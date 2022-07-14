@@ -1,0 +1,70 @@
+1) docker  run -d react-app
+- to run the docker image in the background.
+
+2) docker run -d --name blue-sky react-app
+- to give any name for the docker image in run time we can use --name.
+- docker image runs in detached mode in the background.
+
+3) docker logs 1bd620bad1fc
+- docker logs help us to know about the running container.
+- we should provide the container id.
+
+4) port value is published on the container, but the local host itself is not listening. Proper mapping of the ports is required.
+- so we should map the host port with the container port.
+
+5) docker run -d -p 80:3000 --name c1 react-app
+- to run new image with name c1 in detached mode in background.
+- port 80 of the local host is connected with port 3000 of the container.
+
+6) docker run is for running the new container and docker exec is for executing new command in the running container.
+
+7) docker stop c1
+- for stopping the docker container.
+
+8) docker start c1
+- for restarting the docker container.
+
+9) docker rm c1
+- for removing the docker container.
+
+10) Files in the containers run secretly. Files of one container is not exposed to other containers. When we delete the container, all the files will be deleted.
+
+11) Volume is a storage outside of the container. It may be file system or the cloud system.
+
+12) docker volume --help
+- it gives commands list related to volume.
+
+13) docker volume create app-data
+- a new volume "app-data" will be created.
+
+14) docker volume inspect app-data
+- to view the details of the volume "app-data".
+
+15) MOUNTPOINT is the invisible path inside the virtual machine/kernel. Does not exist in computer. This is where volume directory is created on the host.
+
+16) docker run -d -p 4000:3000 -v app-data:/app/data react-app
+- runs the docker image react-app in a new container;
+- A volume/folder called "app-data" is created in the kernel/virtual machine of the computer.
+- The volume "app-data" is mapped with the file system of the container.
+- So, when the container is deleted, volume will not get deleted.
+- Same volume can be used with multiple containers.
+
+17) docker cp 35f4:/app/README.md .
+- to copy any file from inside the container to outside directory.
+- In this case "readme.md" was copied from container and pasted into the current working directory.
+
+18) docker cp secret.txt 35f4:/app
+- to copy any file from outside directory into the container.
+- In this case, a file "secret.txt" is copied and pasted into the file system of the container.
+
+19) what if some changes made in the file system of the container? How to update the changes in the running application??
+- map a directory in the host with the directory inside the container.
+
+20) docker container rm -f $(docker container ls -aq)
+- removes all the containers forcefully.
+
+21) docker image rm $(docker image ls -q)
+- removes all the images completely.
+
+- go to troubleshooter in docker desktop app, and clean/purge all the data. It will delete all the containers and images.
+

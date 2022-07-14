@@ -1,0 +1,126 @@
+1) docker compose up
+- runs the "docker-compose.yml" file which takes care of running the complete application(both frontend and backend).
+- application will run inside the containers.
+
+2) yml file is a simplified json file. In yml file, there is no curly brackets, commas, quotes.
+
+3) yml files are used for configuration purpose. Write the "docker-compose.yml" file by looking at the documentation.
+
+4) docker compose --help
+- this command gives all the list of commands we can use from docker compose.
+
+5) docker compose build --help
+- this command helps to build the images. Images will be built for all the containers by this single command.
+
+6) docker compose build --no-cache
+- to build the images without cache.
+
+7) docker compose down
+- it will stop the application and remove the containers but the images will still be present.
+
+8) docker compose up --help
+- gives all the available commands for "create" and compose.
+- if the images are not ready, then images will be built first, then they will run.
+
+9) docker compose up --build
+- build images first, then start the containers.
+- runs the application after building the images.
+
+10) docker compose up -d
+- it runs the containers in the background.
+
+11) docker compose ps
+- shows all the containers which are relevant to this application only.
+
+12) docker ps
+- shows all the running containers across all the applications.
+
+13) docker compose will create the network. When the application runs, the running containers will use the network and talk to each other.
+
+14) How to publish the changes?
+- we did some changes in application. We want to see the changes in the running containers.
+
+15) Create new service called "volume" inside the frontend and backend containers, so that any change in the local folder can be updated immediately.
+
+- volumes:
+      - ./backend:/app
+
+- above code lines are added to the docker compose file.
+- "backend" folder is mapped with the "app" folder inside the container.
+
+
+16) docker volume ls
+- gives list of all the volumes.
+
+17) Migration files will be kept in "migration" folder.
+
+18) If we want to migrate the database during the docker compose, then add the migration command in docker compose file.
+
+19) If the command is too big, We can also give entrypoint script in the command. In the entrypoint script, we can keep the required commands related to migration.
+
+20) migrate mongo up   (or)   npm run db:up
+- to migrate the database with the docker compose.
+
+21) command: ./wait for db:27017 && migrate mongo up && npm start
+- this command service is added in the docker compose file.
+- "wait-for" is a shell script which helps to wait till the connection with the database is achieved.
+- if the above command is big, we can use entrypoint script and give the location of the entrypoint script.
+
+22) docker volume rm vidly_vidly
+- first vidly is the application name, second vidly is the volume name.
+- above command removes the volume vidly.
+
+23) we can do testing in docker compose itself. Just add the service for the "test".
+
+24) we can deploy our docker images/applications into a single host or into a group of servers.
+- if we do "single server hosting", there will be traffic related problems.
+- if we get lot of requests, then server will be slowed down.
+- if the server gets crashed, application can not run.
+
+- cluster deployment is the most preferable.
+- cluster deployment needs the tool known as "Kubernetes".
+
+25) VPS means virtual private server. We should have our own vps which runs our application all the time.
+- AWS, digital ocean, Microsoft Azure, Google cloud platform these are the providers of vps.
+
+26) VPS will have "docker engine" inside it.
+- So, to communicate with that docker engine of the vps, we should have a tool called "docker machine".
+- docker machine gives commands and sends images and interact with the docker engine.
+- install the docker machine using the documentation.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Digital Ocean
+
+27) In docker machine, install the drivers for digital ocean, aws or other platforms.
+- docker machine create \
+- --driver digitalocean \
+- --digitalocean access token b3f0b9d49 \
+
+28) Take the access token in digital ocean site. Then using that token, these docker engine and machines can talk to each other.
+- digital ocean will provide the IP address for the server. It is the IP address for our domain name.
+
+29) docker machine ls
+- to see all the docker machines.
+
+30) docker machine ssh vidly
+- docker machine is logged into the server in the given ip address. connection is created.
+- look around and see the files and folders present.
+
+31) keep seperate "dockerfile" files for production and development. Keep seperate docker compose files for production and development.
+- It will help in reducing the docker image.
+
+32) npm run build
+- the "build" command present in frontend react "package.json" file is used for optimization.
+- new folder called "build" is created which helps in deployment and optimization.
+- this folder should be added to the server so that a lot of optimization can take place.
+
+33) docker compose -f docker-compose.prod.yml build
+- creates the images first and then it runs the application/containers.
+
+34) docker machine env vidly
+- environment variables available for setting up with vidly machine.
+
+35) eval $(docker-machine env vidly)
+- dollar sign with paranthesis means paranthesis will be executed first and the result will be sent to eval as a parameter.
+- all the environment variables are set and evaluated. Connection is done with the machine and engine.

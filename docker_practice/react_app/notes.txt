@@ -1,0 +1,116 @@
+"FROM" command takes information about OS and environment from which docker image should be built.
+check for the samples in docker samples. Search for the proper small sized docker image in hub.docker.com.
+
+
+docker build -t react-app .
+- above command builds the docker image in the current directory with the name "react-app".
+
+
+docker image ls
+- above command lists the docker images present in the machine.
+- docker images     -> this command also gives the same result.
+
+
+docker run -it react-app
+- above command runs the image in the node environment.
+docker run -it react-app bash
+- above command runs the image in the bash environment.
+- docker run -it react-app sh    -> runs in the shell environment.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+COPY package.json README.md /app/
+- above command is used to copy the two files into the docker image.
+COPY . /app/
+- above command copies entire folder into the docker image.
+
+
+COPY ["hello world.txt", "."] /app
+- to copy "hello world.txt" file and one full working folder into the image.
+
+
+WORKDIR /app
+COPY . .
+- above command sets the working directory, we can copy current folder to working directory/image.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1) use .dockerignore file to ignore the large files or unwanted files.
+2) RUN command is used to install all the dependencies.
+3) use apt for bash package installation.
+4) use apk for shell package installation.
+5) ENV command is used to set the environment variable, or the api url with which application should interact.
+6) EXPOSE command is used to give information of the port. All the containers will listen to that port. It gives only information.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1) adduser -S -G app app
+- new common user is created to run application. -G app means group name is app, username is also app.
+2) groups app
+- to check the groups of the created user "app".
+3) addgroup mosh && adduser -S -G mosh mosh
+- mosh group is created and a new user mosh is added to the mosh group.
+4) USER command is used to set the user.
+- set the user on the top so that the user get all the previlages.
+- the other commands should be executed below.
+
+5) docker run react-app npm start
+- react application needs to start with the command "npm start".
+- it means start running the image in container by "npm start" command.
+
+6) CMD command is used if everytime we want to use the same command to run the application.
+7) CMD ["npm", "start"]
+- above method is the best method to write command instruction because windows use "cmd" form and shell use "/bin/sh" form.
+- using above command, we can skip "npm start" everytime.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1) docker history react-app
+- shows the details of layers; layer formation with the size of the docker image can be seen.
+- separate the files by distributing the process of copying the files.
+- STABLE INSTRUCTIONS SHOULD BE ON THE TOP, CHANGING INSTRUCTIONS SHOULD BE ON THE BOTTOM.
+
+
+2) docker prune system is used to remove the unused images, unused containers.
+
+3) docker container prune
+- removes the stopped containers.
+- there are other commands/options for "docker container --help".
+docker image prune
+- removes the unused images.
+
+4) docker image rm 27941809078c
+- removes one or more docker images.
+
+
+5) docker build -t react-app:buster .
+- to give tag for the docker image, just put colon and give the name during the creation of the docker image.
+
+6) docker image remove react-app:1
+- this removes the tag of the image.
+- an image can have multiple tags. We can remove the tags from the image.
+
+7) docker image tag react-app:latest react-app:1
+- after building the image, if we want to tag image then use above command.
+- the tag "1" is added to the react-app:latest.
+
+8) latest tag is not the latest image. We should explicitly give the tag for the latest image.
+
+9) docker image tag react-app:2 react-app:latest
+- the tag "latest" is added to the react-app:2.
+
+10) docker login
+- to login to dockerhub from command line.
+
+11) docker push userid/imagename:tag
+- login and then push the image to docker hub.
+
+12) docker image save -o react-app.tar react-app:3
+- docker image save --help gives all the commands.
+- docker image save helps to save the image file in the local machine without pushing to docker hub.
+- tar is the zip file format in linux.
+- Image will be saved in layer by layer/folder by folder.
+
+13) docker image load -i react-app.tar
+- docker image load --help gives the other commands.
+- docker image can be loaded from the local machine using the above command.

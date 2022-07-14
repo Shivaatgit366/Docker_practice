@@ -1,0 +1,10 @@
+---
+name: The Ultimate Docker course
+price: 150
+is_published: true
+tags: 
+  - software
+  - devops
+author:
+  first_name: Shiva
+  last_name: Hegde

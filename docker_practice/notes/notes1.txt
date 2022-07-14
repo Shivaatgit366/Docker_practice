@@ -1,0 +1,243 @@
+1) Docker is used to build, run and ship the applications so that applications work in every machine.
+2) Docker uses container system to run applications.
+3) Containers are lightweight, fast, multiple apps can be run in isolation, it takes the OS of the host, it is not a fully fledged OS/virtual machine.
+4) “Docker file” has a bunch of commands which will run and create the docker image of the application.
+5) Docker image should be uploaded to docker hub.
+6) Docker Hub is a registry for docker images. Node, Ubuntu etc are some of the built in official docker images.
+
+———————————————————————————*————————————————————*—————————————————————————————
+
+1) There are so many linux distributions like Ubuntu, Debian, Alpine etc. These linux distributions use same commands.
+2) docker run ubuntu
+- shortcut for pulling the ubuntu image and running it.
+3) Images run inside the containers, if the containers are not interacted, they will be stopped.
+4) docker ps -a
+- to see list of processing or stopped containers.
+5) Open the container in interactive mode and start it.
+6) docker run -it ubuntu
+- to run ubuntu image inside the container with interactive mode.
+7) when the image is running, we get “bash prompt” which takes commands, and those commands will be executed by OS.
+8) root means current logged in user. We can see container ID in the bash prompt.
+9) echo hello
+- hello
+- echo means print on screen.
+10) whoami
+- root
+11) echo $0
+- location of shell program “/bin/bash”
+12) history
+- to see the command history
+13) !
+- put the !3 to go to that command
+
+—————————————————————————————————————————————————————————————————————————————
+
+1) apt used for installation of the packages. Advanced Package Tool helps to install and uninstall packages in ubuntu just like pip, npm etc.
+2) basic text editor for linux is “nano”. It can be installed using apt.
+3) If the image does not have package, then install it.
+4) apt list
+- lists all the packages
+5) apt update
+- package database will be updated. Then only we can install the package.
+6) apt install nano
+- package will be installed. Remember to update the package database first, then only install.
+7) nano
+- package will be opened.
+8) control + l
+- to clear the console window of the Mac terminal.
+9) apt remove nano
+- to uninstall nano from the image.
+
+—————————————————————————————————————————————————————————————————————————————
+
+Just like windows, we have hierarchy in linux also.
+“/“ is the root folder. Forward slash is used to navigate.
+1) ls - listing the files, pwd - present working directory, cd - change directory.
+2) ls -1
+- list items in a single column.
+3) ls -l
+- long listing of the items.
+4) Blue lined elements are folders, white color elements are files.
+5) cd ~
+- to go to “root directory” of the user.
+
+————————————————————————————————————————————————————————————————————————
+
+1) mkdir test
+- a folder will be created called “test”.
+2) mv test docker
+- to “rename” test folder to docker folder.
+3) touch hello.txt
+- to create a file called “hello.txt”.
+4) touch file1.txt file2.txt file3.txt
+- create multiple files in a single go.
+5) There are two file path types; one is absolute path(starting from the “/“ directory) and the other one is relative path(starting from same folder).
+Example:- cd docker
+- it means relative path
+Example:- cd /root/docker
+- it is absolute path starting from “/“ folder.
+6) mv hello.txt hello-docker.txt
+- rename the “hello.txt” file to “hello-docker.txt”.
+7) rm file1.txt file2.txt
+- used for deleting the files.
+8) rm file*
+- used to remove specific pattern. Here, files starting with the name “file” will be deleted.
+9) rm -r docker/
+- removes the folder “docker”. Use “-r” to delete the folder.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) nano file1.txt
+- open the nano text editor with the file name “file1.txt”
+2) cat file1.txt
+- to view the content of the file.
+3) more file1.txt
+- to view the content of the file page by page.
+4) head -n 5 file1.txt
+- to view the first five lines of the file.
+5) tail -n 5 file1.txt
+- to view the last five lines of the file.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) “redirection” is the technique to produce multiple files with multiple results.
+2) “cat” command can be used to read the file and transfer it to another file.
+Example:- cat file1.txt > file2.txt
+Data from file1.txt will be copied to file2.txt.
+Remember, file2.txt will be created first and then the data will be transferred into it. 
+3) cat file1.txt file2.txt
+- cat reads the data from both the files.
+4) echo hello > hello.txt
+- echo is used to transfer the “hello” content(one line content) to hello.txt file.
+- the file “hello.txt” will be created first and then content will be transferred into it.
+5) ls -l /etc/ > output.txt
+- to read the files in “large list view” and to transfer the data into another text file.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) grep is used to search the string; grep means global regular expression print.
+2) grep -i hello file1.txt
+- to search the word “hello” in file1.txt file.
+- i mens case insensitive.
+3) grep -i -r hello .
+- to search the word “hello” in the present directory.
+- put -r to search in the folder/directory.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) find
+- to see all the files and directories (including hidden files).
+2) ls -a
+- to see all the files and folders(including hidden).
+3) find /etc/
+- to see all the files and folders in “etc” directory.
+4) find -type d
+- to see all the directories only.
+5) find -type f
+- to see all the files only.
+6) find -type f -name “f*”
+- to find all the files with the name starting with “f”.
+7) find / -type f -iname “*.py”
+- to search all the python files in the root/parent directory “/“.
+8) find / -type f -name “*.py” > python-files.txt
+- to find all the python files and write the result into another file.
+
+————————————————————————————————————————————————————————————————————————————
+
+1)  multiple commands can be combined in linux.
+2) mkdir test; cd test; echo done
+- all these commands will be executed in a single line. At least all the executable commands will be executed.
+3) mkdir test && cd test && echo done
+- if any command is not executable, then none of the commands will be executed. This is “and” operator.
+4) mkdir test || echo “directory exists”
+- this is “or” operator, at least the eligible command will be executed.
+5) we can use pipe(|) operator to transfer the output.
+Example:- ls /bin | more
+- “more” command doesn’t need input because it takes the input from the first command.
+- we can use “head” and “tail” command similarly because they take input from the first command.
+6) use backslash “\” to write multiple commands line by line.
+Example:- mkdir hello;\ 
+			cd hello;\ 
+			echo done
+- commands can be added line by line by using backslash.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) Environment variables help to store configuration settings of the applications.
+2) printenv
+- see all the environment variables on this container.
+3) printenv PATH
+- this prints path variable only.
+- so we can print specific variable using printenv command.
+4) docker start -i 0568cfe5be8a
+- to restart docker container with that id.
+5) echo DB_USER=shiva >> .bashrc
+- to append db_user variable to .bashrc file. File will not be replaced. So use >> symbol for appending.
+6) To add any environment variable, add the variable inside the “.bashrc” file.
+- by doing so, it will be present permanently. Close and restart the container.
+- otherwise, when the container stops, environment variables will be erased.
+7) echo $DB_USER
+- prints environment variable DB_USER.
+- echo $PATH prints path variable.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) ps
+- to know about on going processes in the local machine/computer.
+2) PID means process id.
+3) sleep 100 &
+- put the sleep command in the background, computer sleeps for 100 seconds.
+4) kill 26
+- to stop that process with the id 26.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) useradd -m shiva
+- to add new user in linux; new user’s details are created in /etc/passwd file.
+- root user can create this new user from root user’s bash program.
+- adduser shiva     this command allows to set password for the new user.
+2) usermod -s /bin/bash shiva
+- User’s shell program changed into bin/bash.
+- earlier it used to be bin/sh.
+3) cat /etc/shadow
+- passwords are stored in this file. We get list of encrypted passwords.
+4) docker exec -it 0568cfe5be8a bash
+- to run a command in a running container in bash. User is root user.
+5) docker exec -it -u shiva 0568cfe5be8a bash
+- to run a command in a running container with user shiva.
+6) $ symbol for normal user. # symbol for root user, root user will have special privileges.
+7) with logged in as normal user, if we try to do “cat /etc/bash”, we get the error as “permission denied”.
+8) /root is the home for root user.
+9) /home/user is the home for normal user.
+10) userdel shiva
+- this command deletes the user shiva.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) groupadd developers
+- to add new group
+- new group details can be found in /etc/group file.
+- when the user is created, user belongs to the primary group(primary group name will be same as the user).
+2) usermod -G developers shiva
+- to add user shiva to the secondary group “developers”.
+3) groups shiva
+- to see the groups of the user shiva.
+4) usermod -G developers,artists shiva
+- to keep on adding the groups to the user, put comma and add the groups to the user.
+
+————————————————————————————————————————————————————————————————————————————
+
+1) -rw-r--r-- 1 root  root    11 Jun 29 15:02 deploy.sh
+    drwxr-x--- 2 shiva shiva 4096 Jun 29 06:19 shiva
+- hit “ls -l” for long listing; we can see permissions; rwx means read write and execute permissions.
+- execute means we can read the file or go into it.
+2) chmod u+x deploy.sh
+- adding “execute” permission to the “deploy.sh” file. Only that user can execute this file.
+3) chmod o+x deploy.sh
+- adding “execute” permission to the “deploy.sh” file. Other users can also execute this file.
+4) “.sh” means the shell file. All the commands will be executed in that file. It is the shell script file.
+5) chmod  og+x+w-r   *.sh
+- for others and group members, execute and write permission given, read permission removed for any “.sh” files.
+
+————————————————————————————————————————————————————————————————————————————
+
